@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 
@@ -9,6 +10,10 @@ export default function Home() {
         <title>Next.js Starter!</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Link href="/14-day-per-1e5">
+        <a>14-day-per-1e5</a>
+      </Link>
 
       <main>
         <Header title="Välkommen till min app!" />
