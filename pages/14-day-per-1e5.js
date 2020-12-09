@@ -1,5 +1,5 @@
 import React, {  useEffect, useState } from "react";
-import population from "./population";
+import population from "@components/population";
 import json from "./latest.json"
 
 export const App = () => {
