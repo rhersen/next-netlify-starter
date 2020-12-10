@@ -3,7 +3,6 @@ import population from "@components/population";
 import json from "./latest.json"
 
 export const App = () => {
-  const [status, setStatus] = useState("idle");
   const [headers, setHeaders] = useState([]);
   const [dates, setDates] = useState([]);
   const [rows, setRows] = useState([]);
