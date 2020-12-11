@@ -6,7 +6,6 @@ export const App = () => {
   const [headers, setHeaders] = useState([]);
   const [dates, setDates] = useState([]);
   const [rows, setRows] = useState([]);
-  const [selected, setSelected] = useState(-1);
 
   useEffect(() => {
     let [headerObject, ...dataObjects] = json["Antal per dag region"];
@@ -48,70 +47,29 @@ export const App = () => {
   };
 
   return (
-    <>
-      {selected === -1 ? (
-        <div className="table">
-          <span className="date" />
-          {headers.map(columnHeader)}
-          {rows.map((row, rowIndex) => (
-            <>
-              <span className="date">{dates[rowIndex]}</span>
-              {row.map((value, colIndex) => {
-                let a = rows
-                  .slice(rowIndex - 13, rowIndex + 1)
-                  .map((row) => row[colIndex]);
-                let x = fourteenDayPer1e5(a, population[colIndex]);
-                if (x === undefined) return <span> </span>;
-                return <span className={color(x)}>{Math.round(x)}</span>;
-              })}
-            </>
-          ))}
-          <span className="date" />
-          {headers.map(columnHeader)}
-        </div>
-      ) : (
+    <div className="table">
+      <span className="date" />
+      {headers.map(columnHeader)}
+      {rows.map((row, rowIndex) => (
         <>
-          <button onClick={() => setSelected(-1)}>back</button>
-          <div>{headers[selected]}</div>
-          <div className="chart">
-            <div className="y-values">
-              {yValues.map((y) => (
-                <div className="y-value">{y}</div>
-              ))}
-            </div>
-            <svg viewBox="0 0 800 600">
-              {yValues.map((y) => (
-                <line x1="0" y1={y * yScale} x2="800" y2={y * yScale}></line>
-              ))}
-
-              <polyline
-                fill="none"
-                stroke="#c3227d"
-                points={rows
-                  .map((row, rowIndex) =>
-                    row.map((value) => {
-                      let a = rows
-                        .slice(rowIndex - 13, rowIndex + 1)
-                        .map((row) => row[selected]);
-                      let x = sevenDayPerMillion(a, population[selected]) || 0;
-                      return (
-                        (rowIndex * 800) / rows.length +
-                        "," +
-                        (600 - x * yScale)
-                      );
-                    })
-                  )
-                  .join(" ")}
-              />
-            </svg>
-          </div>
+          <span className="date">{dates[rowIndex]}</span>
+          {row.map((value, colIndex) => {
+            let a = rows
+              .slice(rowIndex - 13, rowIndex + 1)
+              .map((row) => row[colIndex]);
+            let x = fourteenDayPer1e5(a, population[colIndex]);
+            if (x === undefined) return <span> </span>;
+            return <span className={color(x)}>{Math.round(x)}</span>;
+          })}
         </>
-      )}
-    </>
+      )).reverse()}
+      <span className="date" />
+      {headers.map(columnHeader)}
+    </div>
   );
 
   function columnHeader(header, i) {
-    return <span onClick={() => setSelected(i)}>{header}</span>;
+    return <span>{header}</span>;
   }
 
   function color(x) {
