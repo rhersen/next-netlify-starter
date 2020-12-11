@@ -49,7 +49,6 @@ export const App = () => {
 
   return (
     <>
-      <div className="status">{status}</div>
       {selected === -1 ? (
         <div className="table">
           <span className="date" />
