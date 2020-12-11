@@ -25,9 +25,6 @@ export const App = () => {
     );
   }, []);
 
-  let yScale = 0.75;
-  let yValues = Array.from({ length: 7 }).map((value, i) => (i + 1) * 100);
-
   let sevenDayPerMillion = (a, pop) =>
     (a.slice(-7).reduce((a, b) => a + b, 0) / 7 / pop) * 1e6;
 
@@ -68,7 +65,7 @@ export const App = () => {
     </div>
   );
 
-  function columnHeader(header, i) {
+  function columnHeader(header) {
     return <span>{header}</span>;
   }
 
@@ -77,11 +74,6 @@ export const App = () => {
     if (x > 20) return "color20";
     if (x > 0) return "color1";
     return "color0";
-  }
-
-  function percentageColor(x) {
-    for (let i = -60; i <= 60; i += 20) if (x < i) return "color" + (i - 10);
-    return "color70";
   }
 };
 
