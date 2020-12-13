@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+import Head from "next/head";
+import Link from "next/link";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 export default function Home() {
   return (
@@ -11,6 +11,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Link href="/7-day-per-million">
+        <a>7-day-per-million</a>
+      </Link>
       <Link href="/14-day-per-1e5">
         <a>14-day-per-1e5</a>
       </Link>
@@ -24,5 +27,5 @@ export default function Home() {
 
       <Footer />
     </div>
-  )
+  );
 }

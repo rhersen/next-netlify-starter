@@ -26,7 +26,7 @@ export default () => {
       headers={headers}
       dates={dataObjects.map((obj) => obj.A.substr(0, 10))}
       rows={dataObjects.map(Object.values).map(([, ...row]) => row)}
-      f={fourteenDayPer1e5}
+      f={sevenDayPerMillion}
     />
   );
 };
