@@ -20,6 +20,9 @@ export default function Home() {
       <Link href="/weekly-change">
         <a>weekly-change</a>
       </Link>
+      <Link href="/chart">
+        <a>chart</a>
+      </Link>
 
       <main>
         <Header title="Välkommen till min app!" />
