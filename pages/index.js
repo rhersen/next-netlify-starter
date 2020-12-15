@@ -17,6 +17,9 @@ export default function Home() {
       <Link href="/14-day-per-1e5">
         <a>14-day-per-1e5</a>
       </Link>
+      <Link href="/weekly-change">
+        <a>weekly-change</a>
+      </Link>
 
       <main>
         <Header title="Välkommen till min app!" />
