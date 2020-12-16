@@ -17,8 +17,11 @@ export default () => {
     setSelected(0);
   }, []);
 
-  let yScale = 0.75;
-  let yValues = Array.from({ length: 7 }).map((value, i) => (i + 1) * 100);
+  let yMax = 1000;
+  let yScale = 600 / yMax;
+  let yValues = Array.from({ length: yMax / 100 - 1 }).map(
+    (value, i) => (i + 1) * 100
+  );
 
   let sevenDayPerMillion = (a, pop) =>
     (a.slice(-7).reduce((a, b) => a + b, 0) / 7 / pop) * 1e6;
