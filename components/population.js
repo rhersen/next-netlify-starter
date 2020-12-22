@@ -1,4 +1,4 @@
-let population = [
+export default [
   10230000,
   159748,
   287795,
@@ -22,5 +22,3 @@ let population = [
   304634,
   465214,
 ];
-
-export default population;
