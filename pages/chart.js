@@ -8,10 +8,10 @@ export default () => {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    let [headerObject, ...dataObjects] = json["Antal per dag region"];
-    let [, ...headers] = Object.values(headerObject);
+    let dates = Object.keys(json.Totalt_antal_fall);
+    let headers = Object.keys(json);
 
-    setRows(dataObjects.map(Object.values).map(([, ...row]) => row));
+    setRows(dates.map((date) => headers.map((header) => json[header][date])));
 
     setHeaders(headers);
     setSelected(0);
