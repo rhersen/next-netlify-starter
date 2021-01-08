@@ -7,11 +7,11 @@ export const Table = ({ headers, dates, columns, f }) => {
       className="table"
       style={{
         "grid-template-columns": `max-content repeat(${headers.length}, 1fr)`,
-        "grid-template-rows": `repeat(${dates.length + 2}, 1fr)`,
+        "grid-template-rows": `repeat(${dates.length + 1}, 1fr)`,
       }}
     >
       <span className="date" />
-      {dates.map((date) => (
+      {dates.reverse().map((date) => (
         <span className="date">{date}</span>
       ))}
       {columns.map((column, colIndex) => (
@@ -22,8 +22,7 @@ export const Table = ({ headers, dates, columns, f }) => {
             let x = f(a, population[colIndex]);
             if (x === undefined) return <span> </span>;
             return <span className={color(x)}>{Math.round(x)}</span>;
-          })}
-          <span>{headers[colIndex]}</span>
+          }).reverse()}
         </>
       ))}
     </div>
