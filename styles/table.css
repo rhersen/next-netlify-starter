@@ -1,6 +1,10 @@
 .table {
   display: grid;
-  grid-template-columns: max-content repeat(22, 1fr);
+  grid-auto-flow: column;
+}
+
+.table .header {
+  grid-row: 1;
 }
 
 .table span {

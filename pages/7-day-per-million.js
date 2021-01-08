@@ -10,7 +10,7 @@ export default () => {
     <Table
       headers={headers}
       dates={dates}
-      rows={dates.map((date) => headers.map((header) => json[header][date]))}
+      columns={headers.map((header) => dates.map((date) => json[header][date]))}
       f={(a, pop) => (a.slice(-7).reduce((a, b) => a + b, 0) / 7 / pop) * 1e6}
     />
   );

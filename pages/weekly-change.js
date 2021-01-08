@@ -10,7 +10,7 @@ export default () => {
     <Table
       headers={headers}
       dates={dates}
-      rows={dates.map((date) => headers.map((header) => json[header][date]))}
+      columns={headers.map((header) => dates.map((date) => json[header][date]))}
       f={(a) => {
         let prev = a.slice(0, 7).reduce((a, b) => a + b, 0);
         let curr = a.slice(-7).reduce((a, b) => a + b, 0);

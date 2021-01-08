@@ -1,34 +1,33 @@
 import React from "react";
 import population from "@components/population";
 
-export const Table = ({ headers, dates, rows, f }) => {
+export const Table = ({ headers, dates, columns, f }) => {
   return (
-    <div className="table">
+    <div
+      className="table"
+      style={{
+        "grid-template-columns": `max-content repeat(${headers.length}, 1fr)`,
+        "grid-template-rows": `repeat(${dates.length + 2}, 1fr)`,
+      }}
+    >
       <span className="date" />
-      {headers.map(columnHeader)}
-      {rows
-        .map((row, rowIndex) => (
-          <>
-            <span className="date">{dates[rowIndex]}</span>
-            {row.map((value, colIndex) => {
-              let a = rows
-                .slice(rowIndex - 13, rowIndex + 1)
-                .map((row) => row[colIndex]);
-              let x = f(a, population[colIndex]);
-              if (x === undefined) return <span> </span>;
-              return <span className={color(x)}>{Math.round(x)}</span>;
-            })}
-          </>
-        ))
-        .reverse()}
-      <span className="date" />
-      {headers.map(columnHeader)}
+      {dates.map((date) => (
+        <span className="date">{date}</span>
+      ))}
+      {columns.map((column, colIndex) => (
+        <>
+          <span className="header">{headers[colIndex]}</span>
+          {column.map((cell, rowIndex) => {
+            let a = column.slice(rowIndex - 13, rowIndex + 1);
+            let x = f(a, population[colIndex]);
+            if (x === undefined) return <span> </span>;
+            return <span className={color(x)}>{Math.round(x)}</span>;
+          })}
+          <span>{headers[colIndex]}</span>
+        </>
+      ))}
     </div>
   );
-
-  function columnHeader(header) {
-    return <span>{header}</span>;
-  }
 
   function color(x) {
     for (let i = 960; i >= 60; i /= 2) if (x > i) return "color" + i;
