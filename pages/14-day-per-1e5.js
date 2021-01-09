@@ -1,8 +1,7 @@
 import React from "react";
-import json from "./latest.json";
 import { Table } from "@components/Table";
 
-export default () => {
+export default ({ json }) => {
   let dates = Object.keys(json.Totalt_antal_fall);
   let headers = Object.keys(json);
 
@@ -15,3 +14,9 @@ export default () => {
     />
   );
 };
+
+export const getServerSideProps = async () => ({
+  props: {
+    json: await (await fetch(`http://linode.hersen.name:3000/cases`)).json(),
+  },
+});

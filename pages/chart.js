@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import population from "@components/population";
-import json from "./latest.json";
 
-export default () => {
+export default ({ json }) => {
   const [headers, setHeaders] = useState([]);
   const [rows, setRows] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -70,3 +69,9 @@ export default () => {
     </>
   );
 };
+
+export const getServerSideProps = async () => ({
+  props: {
+    json: await (await fetch(`http://linode.hersen.name:3000/cases`)).json(),
+  },
+});
